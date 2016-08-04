@@ -1,0 +1,37 @@
+_repo: The-Forsyte-Saga-Volume-III.--13-To-Let_2596
+_version: 0.0.1
+covers:
+- cover_type: archival
+  image_path: 2596/2596-h/images/titlepage3.jpg
+  rights: Public domain in the USA.
+  rights_url: http://creativecommons.org/about/pdm
+creator:
+  author:
+    agent_name: Galsworthy, John
+    alias: Sinjohn, John
+    birthdate: 1867
+    deathdate: 1933
+    gutenberg_agent_id: '850'
+    url: http://www.gutenberg.org/2009/agents/850
+    wikipedia: http://en.wikipedia.org/wiki/John_Galsworthy
+description: ''
+gutenberg_issued: '2006-06-14'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '2596'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Families -- England -- Fiction'
+- !lcc 'PR'
+- !lcsh 'Middle class -- England -- Fiction'
+- !lcsh 'Forsyte family (Fictitious characters) -- Fiction'
+- !lcsh 'Women -- England -- Fiction'
+- !lcsh 'Domestic fiction'
+- !lcsh 'England -- Social life and customs -- 19th century -- Fiction'
+- !lcsh 'England -- Social life and customs -- 20th century -- Fiction'
+- GITenberg
+title: "The Forsyte Saga, Volume III.\r\nAwakening\r\nTo Let"
+url: http://www.gutenberg.org/ebooks/2596
