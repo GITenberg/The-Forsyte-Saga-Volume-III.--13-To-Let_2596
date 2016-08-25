@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: vdqHjj12U/q6sSvASKXaN6GYdnZD6VSxKSIX1p44w/6F5hH8kkkqipYBZXet8JDcKnLWMufqsGNV05YuUmwRAhWbZN+Ai2RpTNX/B+DlIjkl8nIoPHQmwYIYvf2CTJ1dsftaH+kFk69RtEH5a4qX067OOWi4TDSWSt+tvRue4waoqLvChxD1IWwd+vajJfuCSnsa2gq+HWoKHSLjEdW9v2Xn8yXHoykFKqu3bjyUGn6UT58sRWyFCIo3/lAks3xyx0w7+Zj9TBTxNOx96JoKnaXU5R4AvzB+u2oV+11IMQht/iKe2K6YXTu6bEpwnoA5yyXoK8p1U7MxMyvwzSt4u7hkUAXH1Byl+Wbbd+/kFw/4MmwG6yD3ugwPANWa1dYFvfJvN+zcmC8KAd8FQLvRiZZ9cVeISVbZmprHrlxXsIC8UQXjMY5Nz3BknNAj31RyGtmUoQthyi3fncvm5rys1lodXcnMoGk3pBKIlM5IvuTG02E34L0BZL+VGS7x84YH6PFDqG0UoWECo3ququztCc71VaPrkmVj/jYsflhRpklBozGrDh4YFRmLk8zPP1KrokPvddzaFTorse2PhmM2JkZQBR9d1gW3weGSTciTr7oFAxrYeaLWpFKsTmxh38IpRGt8r2Cyt0atxvZzTAEkCeUP/ndGg/bxYc+VkAr2x90=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Forsyte-Saga-Volume-III.--13-To-Let_2596
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
